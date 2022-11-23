@@ -1,0 +1,85 @@
+main {
+  padding: 20px 0;
+  background-color: rgba(201, 224, 245, 0.05);
+}
+.main-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 -15px;
+}
+.card {
+  margin: 0 15px;
+  width: 350px;
+  box-shadow: 0px 0px 20px -3px rgb(121, 125, 126);
+  border-radius: 15px;
+  padding: 15px 10px;
+  background-color: rgba(191, 184, 172, 0.08);
+}
+.card-header {
+  margin-bottom: 15px; 
+  position: relative;
+}
+.card-title, .card-score {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 0px 3px 5px -4px rgb(121, 125, 126);
+}
+.card-title {
+  color: rgb(219, 75, 53);
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.card-score {
+  color: rgb(0, 28, 61);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.card-title-name, .task-btn-add, .task-btn-delete-all, .card-score-title {
+  margin: 0 15px;
+}
+.task-btn-add, .task-btn-delete-all {
+  border: none;
+  background-color: transparent;
+}
+.fa-plus {
+ font-size: 30px;
+ color: rgb(65, 112, 184);
+ 
+}
+.fa-trash-can {
+  font-size: 24px;
+  color: rgb(121, 125, 126);
+}
+.task-btn-add {
+  &:hover::before{
+    width: 110px;  
+    padding: 5px 0;
+    display: block;
+    content: "Сreate new task";
+    position: absolute;
+    top: -30px;
+    right: 50px;
+    font-size: 12px;
+    background-color: rgb(65, 112, 184, 0.9);
+    border-radius: 10px;
+    transition: 0.2s;
+    color: aliceblue;
+  }
+}
+.task-btn-delete-all:hover::before{
+  width: 110px;  
+    padding: 5px 0;
+    display: block;
+    content: "Delete all tasks";
+    position: absolute;
+    top: -30px;
+    right: 0px;
+    font-size: 12px;
+    background-color: rgb(65, 112, 184, 0.9);
+    border-radius: 10px;
+    transition: 0.2s;
+    color: aliceblue;
+}
