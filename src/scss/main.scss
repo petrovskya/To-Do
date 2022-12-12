@@ -32,12 +32,18 @@ main {
   margin-bottom: 5px;
 }
 .card-score {
+  display: flex;
+  justify-content: space-between;
   color: rgb(0, 28, 61);
   font-size: 20px;
   font-weight: 300;
+  padding: 0 5px;
+  p {
+    margin: 0 15px;
+  }
 }
 
-.card-title-name, .task-btn-add, .task-btn-delete-all, .card-score-title {
+.card-title-name, .task-btn-add, .task-btn-delete-all {
   margin: 0 15px;
 }
 .task-btn-add, .task-btn-delete-all {
@@ -68,9 +74,13 @@ main {
     transition: 0.2s;
     color: aliceblue;
   }
+  &:active::before{
+    display: none;
+  }
 }
-.task-btn-delete-all:hover::before{
-  width: 110px;  
+.task-btn-delete-all{
+  &:hover::before{
+    width: 110px;  
     padding: 5px 0;
     display: block;
     content: "Delete all tasks";
@@ -81,5 +91,10 @@ main {
     background-color: rgb(65, 112, 184, 0.9);
     border-radius: 10px;
     transition: 0.2s;
-    color: aliceblue;
+    color: aliceblue; 
+  }
+  &:active::before{
+    display: none;
+  }
 }
+  

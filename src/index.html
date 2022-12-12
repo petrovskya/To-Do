@@ -20,49 +20,59 @@
   <main>
     <div class="container">
       <div class="main-wrap">
-        <div class="card toDo"data-status="toDo">
+        <div class="card" data-status="toDo">
           <div class="card-header">
             <div class="card-title">
               <p class="card-title-name">Make To Do</p>
               <button class="task-btn-add">
                 <i class="fa-solid fa-plus"></i>
               </button>
-              <button class="task-btn-delete-all">
+              <button class="task-btn-delete-all" data-status="toDo">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
             <div class="card-score">
-              <p class="card-score-title">Total:</p>
+              <p>Total:</p>
+              <p class="score" data-status="toDo">0</p>
             </div>
           </div>
+          <div class="card-content" data-status="toDo"></div>
         </div>
-        <div class="card inProgress" data-status="inProgress">
+        <div class="card" data-status="inProgress">
           <div class="card-header">
             <div class="card-title">
               <p class="card-title-name">In progress</p>
-              <button class="task-btn-delete-all">
+              <button class="task-btn-delete-all" data-status="inProgress">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
             <div class="card-score">
-              <p class="card-score-title">Total:</p>
+              <p>Total:</p>
+              <p class="score" data-status="inProgress">0</p>
             </div>
           </div>
+          <div class="card-content" data-status="inProgress"></div>
         </div>
-        <div class="card done" data-status="done">
+        <div class="card" data-status="done">
           <div class="card-header">
             <div class="card-title">
               <p class="card-title-name">Done</p>
-              <button class="task-btn-delete-all">
+              <button class="task-btn-delete-all" data-status="done">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
             <div class="card-score">
-              <p class="card-score-title">Total:</p>
+              <p>Total:</p>
+              <p class="score" data-status="done">0</p>
             </div>
           </div>
+          <div class="card-content" data-status="done"></div>
         </div>
       </div>
+    </div>
+  </main>
+  <section class="pop-up">
+    <div class="container">
       <div class="new-task-wrap">
         <div class="new-task-card">
           <div class="new-task-card-header">
@@ -92,9 +102,7 @@
         </div>
       </div>
     </div>
-
-  </main>
-  
+  </section>
   <script src="./js/index.js"></script>
 </body>
 
