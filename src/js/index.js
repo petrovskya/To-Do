@@ -110,9 +110,6 @@ const createTask = function() {
   moveOnBtns.forEach((item) => {
     item.addEventListener('click', moveOnTaskToDo);
   });
-
-
-
 }
 
 function deleteTaskToDo(e){
@@ -210,6 +207,8 @@ function moveOnTaskIn(e){
   let taskDivsDone = cardContentDone.querySelectorAll('.task');
   taskDivsDone.forEach((item) => {
     item.dataset.status = 'done';
+    let moveOnBtn = item.querySelector('.task-btn-move-on');
+    moveOnBtn.remove();
   });
   update(taskDivsDone);
   countTotal('toDo', toDo);
