@@ -102,24 +102,17 @@ const createTask = function() {
   countTotal('toDo', toDo);
   clearPopUp();
   
-  let moveOnBtns = document.querySelectorAll('.task-btn-move-on'); 
-  let deleteTaskBtns = document.querySelectorAll('.task-btn-delete'); 
+  let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
+  let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
   deleteTaskBtns.forEach((item) => {
-    if(item.dataset.status = 'toDo'){
-      item.addEventListener('click', deleteTaskToDo);
-    } else if(item.dataset.status = 'inProgress'){ 
-      item.addEventListener('click', deleteTaskIn);
-    } else if(item.dataset.status = 'done'){
-      item.addEventListener('click', deleteTaskDone);
-    }
+    item.addEventListener('click', deleteTaskToDo);
   });
   moveOnBtns.forEach((item) => {
-    if(item.dataset.status = 'toDo') {
-      item.addEventListener('click', moveOnTaskToDo);
-    } else if(item.dataset.status = 'inProgress'){
-      item.addEventListener('click', moveOnTaskIn);
-    }
+    item.addEventListener('click', moveOnTaskToDo);
   });
+
+
+
 }
 
 function deleteTaskToDo(e){
@@ -127,12 +120,45 @@ function deleteTaskToDo(e){
   toDo.splice(thisTask, 1);
   thisTask.remove();
   let taskDivsToDo = cardContentToDo.querySelectorAll('.task');
-  let deleteTaskBtns = document.querySelectorAll('.task-btn-delete'); 
-  let moveOnBtns = document.querySelectorAll('.task-btn-move-on'); 
+  let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
+  let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
   update(taskDivsToDo);
   update(deleteTaskBtns);
   update(moveOnBtns);
   countTotal('toDo', toDo);
+}
+function moveOnTaskToDo(e){
+  let thisTask = e.currentTarget.closest('div[data-status]');
+  let id = thisTask.id;
+  inProgress.push(toDo[id]);
+  toDo.splice(id, 1);
+  thisTask.remove();
+  let taskDivsToDo = cardContentToDo.querySelectorAll('.task');
+  let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
+  let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
+  update(taskDivsToDo);
+  update(deleteTaskBtns);
+  update(moveOnBtns);
+  inProgress.forEach((item) => {
+    item.status = 'in progress';
+  });
+  outInProgress();
+  let taskDivsInProgress = cardContentIn.querySelectorAll('.task');
+  taskDivsInProgress.forEach((item) => {
+    item.dataset.status = 'inProgress';
+  });
+  update(taskDivsInProgress);  
+  countTotal('toDo', toDo);
+  countTotal('inProgress', inProgress);
+
+  let moveOnBtnsIn = cardContentIn.querySelectorAll('.task-btn-move-on');
+  moveOnBtnsIn.forEach((item) => {
+    item.addEventListener('click', moveOnTaskIn);
+  });
+  let deleteTasksBtnsIn = cardContentIn.querySelectorAll('.task-btn-delete');
+  deleteTasksBtnsIn.forEach((item) => {
+    item.addEventListener('click', deleteTaskIn);
+  });
 }
 function deleteTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
@@ -141,6 +167,7 @@ function deleteTaskIn(e){
   let taskDivsIn = cardContentIn.querySelectorAll('.task');
   let deleteTaskBtns = cardContentIn.querySelectorAll('.task-btn-delete'); 
   let moveOnBtns = cardContentIn.querySelectorAll('.task-btn-move-on'); 
+
   update(taskDivsIn);
   update(deleteTaskBtns);
   update(moveOnBtns);
@@ -163,34 +190,11 @@ function deleteTaskDone(e){
 }
 
 
-function moveOnTaskToDo(e){
-  let thisTask = e.currentTarget.closest('div[data-status]');
-  let id = thisTask.id;
-  inProgress.push(toDo[id]);
-  toDo.splice(id, 1);
-  thisTask.remove();
-  let taskDivsToDo = cardContentToDo.querySelectorAll('.task');
-  let deleteTaskBtns = document.querySelectorAll('.task-btn-delete'); 
-  let moveOnBtns = document.querySelectorAll('.task-btn-move-on'); 
-  update(taskDivsToDo);
-  update(deleteTaskBtns);
-  update(moveOnBtns);
-  inProgress.forEach((item) => {
-    item.status = 'in progress';
-  });
-  outInProgress();
-  let taskDivsInProgress = cardContentIn.querySelectorAll('.task');
-  taskDivsInProgress.forEach((item) => {
-    item.dataset.status = 'inProgress';
-  });
-  update(taskDivsInProgress);  
-  countTotal('toDo', toDo);
-  countTotal('inProgress', inProgress);
-}
+
 function moveOnTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
-  done.push(toDo[id]);
+  done.push(inProgress[id]);
   inProgress.splice(id, 1);
   thisTask.remove();
   let taskDivsInProgress = cardContentIn.querySelectorAll('.task');
@@ -199,7 +203,7 @@ function moveOnTaskIn(e){
   update(taskDivsInProgress);
   update(deleteTaskBtns);
   update(moveOnBtns);
-  inProgress.forEach((item) => {
+  done.forEach((item) => {
     item.status = 'done';
   });
   outDone();
@@ -211,8 +215,13 @@ function moveOnTaskIn(e){
   countTotal('toDo', toDo);
   countTotal('inProgress', inProgress);
   countTotal('done', done);
-  
+    
+  let deleteTasksBtnsDone = cardContentDone.querySelectorAll('.task-btn-delete');
+  deleteTasksBtnsDone.forEach((item) => {
+    item.addEventListener('click', deleteTaskDone);
+  });
 }
+  
 
 function update(elem) {
   elem.forEach((item,idx) => {
@@ -226,8 +235,7 @@ cardCloseBtn.addEventListener('click', function(){
   newTaskWrap.classList.toggle('active');
 });
 
-cancelBtn.addEventListener('click', clearPopUp());
-
+cancelBtn.addEventListener('click', clearPopUp);
 const taskBtnNew = document.querySelector('.task-btn-new');
 taskBtnNew.addEventListener('click', createTask);
 
@@ -239,6 +247,7 @@ function deleteTasks(arr, divs){
   countTotal('inProgress', inProgress);
   countTotal('done', done);
 }
+
 deleteAllBtn.forEach((item) => {
   item.addEventListener('click', (e) => {
     if(e.currentTarget.dataset.status == 'toDo'){
