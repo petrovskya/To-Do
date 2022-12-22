@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
-    "predeploy": "rm -rf dist && parcel build --public-url https://github.com/petrovskya/To-Do",
+    "predeploy": "rimraf dist && parcel build --public-url https://github.com/petrovskya/To-Do",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "@parcel/transformer-sass": "^2.8.0",
     "concat": "^1.0.3",
     "parcel": "^2.8.0",
-    "sass": "^1.56.1"
+    "sass": "^1.56.1",
+    "rimraf": "^3.0.2"
   }
 }
