@@ -45,9 +45,11 @@ function clearPopUp(){
   clearValue(newTaskTitle);
   clearValue(newTaskDesc);
   clearValue(newTaskAuthor);
+  // clearValue([newTaskAuthor, newTaskDesc, newTaskTitle]);
 }
 function clearValue(elem) {
   elem.value = '';
+  // форич
 }
 
 let Task = function(title, desc, author, status, date) {
@@ -83,6 +85,7 @@ function render(task, idx){
 function outToDo(){
   cardContentToDo.innerHTML = '';
   toDo.forEach((task, idx) => cardContentToDo.innerHTML += render(task, idx));
+  countTotal(toDo, toDo);
 }
 function outInProgress(){
   cardContentIn.innerHTML = '';
@@ -93,29 +96,110 @@ function outDone(){
   done.forEach((task, idx) => cardContentDone.innerHTML += render(task, idx));
 }
 
+// const isValid = function () {
+//   let elements = document.querySelectorAll('.valid');
+//   elements.forEach((item) => {
+//     item.addEventListener('blur', () => {
+//       if(!item.value){
+//         item.value = null;
+//         item.setAttribute('placeholder', 'Fill in the field!');
+//         item.style.borderColor = 'red';
+//       }
+//     });
+//     item.addEventListener('focus', () => {
+//       if(item.getAttribute('id') == 'title') {
+//         item.setAttribute('placeholder', 'Enter title for your note');
+//       } else if(item.getAttribute('id') == 'desc') {
+//         item.setAttribute('placeholder', 'Enter description for your note');
+//       } else if(item.getAttribute('id') == 'author') {
+//         item.setAttribute('placeholder', "Enter author's name");
+//       }
+//       item.style.borderColo = 'rgb(65, 112, 184)';
+//     });
+    
+//   });
+// }
+function isValid(elem) {
+  if(elem.value){
+    return true;
+  }
+}
+const setData = (array) => {
+  let str = JSON.stringify(array);
+  localStorage.setItem('toDo', str);
+}
+const getData = () => {
+  let from = localStorage.getItem('toDo');
+  let data = JSON.parse(from);
+  cardContentToDo.innerHTML = "";
+  if (data) {
+    sortItem(data);
+    countTotal(toDo, toDo);
+    countTotal(inProgress, inProgress);
+    countTotal(done, done);
+
+  } else {
+    cardContentToDo.innerHTML = "";
+  }
+}
+const sortItem = (data) => {
+  data.forEach((task, idx) => {
+    cardContentToDo.innerHTML += render(task, idx);
+  });
+};
+const removeUser = (array) => {
+  localStorage.removeItem(array);
+  setData(array);
+  getData();
+};
+
+getData();
+
+
+let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
+let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
+deleteTaskBtns.forEach((item) => {
+  item.addEventListener('click', deleteTaskToDo);
+});
+moveOnBtns.forEach((item) => {
+  item.addEventListener('click', moveOnTaskToDo);
+});
+countTotal(toDo, toDo);
+countTotal(inProgress, inProgress);
+countTotal(done, done);
 
 const createTask = function() {
-  let taskDate = toFullDate(day, month, year);
-  let newTask = new Task(newTaskTitle.value, newTaskDesc.value, newTaskAuthor.value, 'to do', taskDate);
-  toDo.push(newTask);
-  outToDo();
-  countTotal('toDo', toDo);
-  clearPopUp();
-  
-  let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
-  let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
-  deleteTaskBtns.forEach((item) => {
-    item.addEventListener('click', deleteTaskToDo);
-  });
-  moveOnBtns.forEach((item) => {
-    item.addEventListener('click', moveOnTaskToDo);
-  });
+  if(isValid(newTaskTitle) && isValid(newTaskAuthor)){
+    let taskDate = toFullDate(day, month, year);
+    let newTask = new Task(newTaskTitle.value, newTaskDesc.value, newTaskAuthor.value, 'to do', taskDate);
+    toDo.push(newTask);
+    
+    setData(toDo);
+    getData();
+    
+    // outToDo();
+    clearPopUp();
+    countTotal(toDo, toDo);
+    
+    
+    let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
+    let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
+    deleteTaskBtns.forEach((item) => {
+      item.addEventListener('click', deleteTaskToDo);
+    });
+    moveOnBtns.forEach((item) => {
+      item.addEventListener('click', moveOnTaskToDo);
+    });
+    
+  }
+  countTotal(toDo, toDo);
 }
 
 function deleteTaskToDo(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   toDo.splice(thisTask, 1);
-  thisTask.remove();
+  removeUser(toDo);
+  // thisTask.remove();
   let taskDivsToDo = cardContentToDo.querySelectorAll('.task');
   let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
   let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
@@ -129,7 +213,8 @@ function moveOnTaskToDo(e){
   let id = thisTask.id;
   inProgress.push(toDo[id]);
   toDo.splice(id, 1);
-  thisTask.remove();
+  removeUser(toDo);
+  // thisTask.remove();
   let taskDivsToDo = cardContentToDo.querySelectorAll('.task');
   let deleteTaskBtns = cardContentToDo.querySelectorAll('.task-btn-delete'); 
   let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
@@ -157,6 +242,8 @@ function moveOnTaskToDo(e){
     item.addEventListener('click', deleteTaskIn);
   });
 }
+
+
 function deleteTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   inProgress.splice(thisTask, 1);
@@ -185,7 +272,6 @@ function deleteTaskDone(e){
   countTotal('inProgress', inProgress);
   countTotal('done', done);
 }
-
 
 
 function moveOnTaskIn(e){
