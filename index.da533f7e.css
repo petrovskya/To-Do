@@ -1,0 +1,392 @@
+@import "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,700&display=swap";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css";
+header {
+  background-color: #c9e0f54d;
+  border-bottom: 2px solid #001c3d;
+  padding: 10px 0;
+}
+
+.header-wrap {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 -15px;
+  display: flex;
+}
+
+.logo, .date, .header-quote {
+  margin: 0 15px;
+}
+
+.logo {
+  color: #001c3d;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.header-quote {
+  color: #001c3db3;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.date {
+  color: #001c3d;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+main {
+  background-color: #c9e0f50d;
+  padding: 20px 0;
+}
+
+.main-wrap {
+  justify-content: space-between;
+  padding: 0 -15px;
+  display: flex;
+}
+
+.card {
+  width: 350px;
+  background-color: #bfb8ac14;
+  border-radius: 15px;
+  margin: 0 15px;
+  padding: 15px 10px;
+  box-shadow: 0 0 20px -3px #797d7e;
+}
+
+.card-header {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.card-title, .card-score {
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+  box-shadow: 0 3px 5px -4px #797d7e;
+}
+
+.card-title {
+  color: #db4b35;
+  margin-bottom: 5px;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.card-score {
+  color: #001c3d;
+  justify-content: space-between;
+  padding: 0 5px;
+  font-size: 20px;
+  font-weight: 300;
+  display: flex;
+}
+
+.card-score p, .card-title-name, .task-btn-add, .task-btn-delete-all {
+  margin: 0 15px;
+}
+
+.task-btn-add, .task-btn-delete-all {
+  background-color: #0000;
+  border: none;
+}
+
+.fa-plus {
+  color: #4170b8;
+  font-size: 30px;
+}
+
+.fa-trash-can {
+  color: #797d7e;
+  font-size: 24px;
+}
+
+.task-btn-add:hover:before {
+  width: 110px;
+  content: "Сreate new task";
+  color: #f0f8ff;
+  background-color: #4170b8e6;
+  border-radius: 10px;
+  padding: 5px 0;
+  font-size: 12px;
+  transition: all .2s;
+  display: block;
+  position: absolute;
+  top: -30px;
+  right: 50px;
+}
+
+.task-btn-add:active:before {
+  display: none;
+}
+
+.task-btn-delete-all:hover:before {
+  width: 110px;
+  content: "Delete all tasks";
+  color: #f0f8ff;
+  background-color: #4170b8e6;
+  border-radius: 10px;
+  padding: 5px 0;
+  font-size: 12px;
+  transition: all .2s;
+  display: block;
+  position: absolute;
+  top: -30px;
+  right: 0;
+}
+
+.task-btn-delete-all:active:before {
+  display: none;
+}
+
+.task {
+  max-width: 80%;
+  border-top: 1px solid #db4b35;
+  border-radius: 10px;
+  margin: 0 auto 15px;
+  padding: 15px;
+  box-shadow: 0 2px 5px #797d7e99;
+}
+
+.task:last-child {
+  margin-bottom: 0;
+}
+
+.task-header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.task-status, .task-date {
+  color: #001c3d;
+  margin: 0 15px;
+}
+
+.task-status {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.task-date {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.task-title {
+  color: #4170b8;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 32px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.task-desc {
+  color: #797d7e;
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.task-author {
+  color: #001c3d;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.task-options {
+  flex-direction: row;
+  justify-content: right;
+  display: flex;
+}
+
+.task-btn-move-on, .task-btn-delete, .task-btn-move-back {
+  background-color: #0000;
+  border: none;
+  margin: 0 5px;
+  display: block;
+}
+
+.fa-circle-right, .fa-turn-down-left {
+  color: #db4b35;
+  font-size: 30px;
+}
+
+.new-task-card {
+  z-index: 10;
+  width: 80%;
+  height: 80%;
+  background-color: #f6f5f2;
+  border: 3px solid #001c3d;
+  border-radius: 15px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px 40px;
+  display: flex;
+  position: absolute;
+  inset: 0;
+}
+
+.new-task-wrap {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.new-task-wrap.active {
+  display: block;
+}
+
+.new-task-wrap:before {
+  content: " ";
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: .9;
+  background-color: #001c3d;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.new-task-card-header {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.new-tasc-card-desc {
+  color: #db4b35;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.card-close-btn {
+  background-color: #0000;
+  border: none;
+}
+
+.fa-circle-xmark {
+  color: #001c3d;
+  font-size: 30px;
+}
+
+input {
+  width: 100%;
+  color: #001c3d;
+  border: 1px solid #4170b8;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.new-task-desc {
+  width: 100%;
+  color: #001c3d;
+  height: 80px;
+  resize: none;
+  border: 1px solid #4170b8;
+  border-radius: 10px;
+  align-self: start;
+  padding: 5px 10px;
+  font-family: Cormorant Garamond, serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.new-task-desc:focus-visible {
+  outline: 0;
+}
+
+.new-task-card-content {
+  margin-bottom: 15px;
+}
+
+.new-task-item {
+  border: 1px solid #001c3d;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 0 20px -5px #001c3d;
+}
+
+.new-task-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-name {
+  color: #001c3d;
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.new-task-card-footer {
+  justify-content: right;
+  display: flex;
+}
+
+.task-btn-cancel, .task-btn-new {
+  color: #bfb8ac;
+  border: none;
+  border-radius: 20px;
+  margin: 0 5px;
+  padding: 10px 15px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.task-btn-new {
+  background-color: #4170b8;
+}
+
+.task-btn-cancel {
+  background-color: #db4b35;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+html {
+  font-family: Cormorant Garamond, serif;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+button:active {
+  transition: all .2s;
+  transform: scale(.97);
+}
+
+/*# sourceMappingURL=index.da533f7e.css.map */
