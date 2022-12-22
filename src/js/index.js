@@ -9,8 +9,8 @@ const cardContentIn = document.querySelector('.card-content__in');
 const cardContentDone = document.querySelector('.card-content__done');
 export {toDo, inProgress, done, cardContentToDo, cardContentIn, cardContentDone};
 import {outToDo, outInProgress, outDone} from "./modules/out.js";
-import { update } from "./modules/update.js";
 import { deleteTasks } from "./modules/deleteTasks.js";
+import { getCardToDoEl, getCardInPrEl, getCardDoneEl } from "./modules/getCardsElements.js";
 
 let currentDate = document.querySelector('.date');
 currentDate.textContent = getDate();
@@ -123,46 +123,6 @@ let Task = function(title, desc, author, date) {
   this.date = date;
 }
 
-function getCardToDoEl(card){
- var taskDivsToDo = card.querySelectorAll('.task');
-  var moveOnBtns = card.querySelectorAll('.task-btn-move-on'); 
-  var deleteTaskBtns = card.querySelectorAll('.task-btn-delete'); 
-  deleteTaskBtns.forEach((item) => {
-    item.addEventListener('click', deleteTaskToDo);
-  });
-  moveOnBtns.forEach((item) => {
-    item.addEventListener('click', moveOnTaskToDo);
-  });
-  update([taskDivsToDo, deleteTaskBtns, moveOnBtns]);
-}
-function getCardInPrEl(card){
-  let taskDivsInProgress = card.querySelectorAll('.task');
-  let moveOnBtns = card.querySelectorAll('.task-btn-move-on'); 
-  let moveBackBtns = card.querySelectorAll('.task-btn-move-back'); 
-  let deleteTaskBtns = card.querySelectorAll('.task-btn-delete'); 
-  deleteTaskBtns.forEach((item) => {
-    item.addEventListener('click', deleteTaskIn);
-  });
-  moveOnBtns.forEach((item) => {
-    item.addEventListener('click', moveOnTaskIn);
-  });
-  moveBackBtns.forEach((item) => {
-    item.addEventListener('click', moveBackTask);
-  });
-  update([taskDivsInProgress, deleteTaskBtns, moveOnBtns, moveBackBtns]);
-}
-function getCardDoneEl(card){
-  let taskDivsDone = card.querySelectorAll('.task');
-  let moveBackBtns = card.querySelectorAll('.task-btn-move-back'); 
-  let deleteTaskBtns = card.querySelectorAll('.task-btn-delete'); 
-  deleteTaskBtns.forEach((item) => {
-    item.addEventListener('click', deleteTaskDone);
-  });
-  moveBackBtns.forEach((item) => {
-    item.addEventListener('click', moveBackTaskIn);
-  });
-  update([taskDivsDone, deleteTaskBtns, moveBackBtns]);
-}
 const createTask = function() {
   if(isValid(newTaskTitle) && isValid(newTaskAuthor)){
     let taskDate = getDate();
@@ -178,7 +138,7 @@ const createTask = function() {
   }
 }
 
-function deleteTaskToDo(e){
+export function deleteTaskToDo(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   toDo.splice(thisTask, 1);
   // removeUser(toDo);
@@ -186,7 +146,7 @@ function deleteTaskToDo(e){
   getCardToDoEl(cardContentToDo);
   countTotal();
 }
-function moveOnTaskToDo(e){
+export function moveOnTaskToDo(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
   inProgress.push(toDo[id]);
@@ -198,7 +158,7 @@ function moveOnTaskToDo(e){
   getCardInPrEl(cardContentIn);
 }
 
-function deleteTaskIn(e){
+export function deleteTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   inProgress.splice(thisTask, 1);
   thisTask.remove();
@@ -206,7 +166,7 @@ function deleteTaskIn(e){
   countTotal();
   
 }
-function deleteTaskDone(e){
+export function deleteTaskDone(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   done.splice(thisTask, 1);
   thisTask.remove();
@@ -214,7 +174,7 @@ function deleteTaskDone(e){
   countTotal();
 }
 
-function moveBackTask(e){
+export function moveBackTask(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
   toDo.push(inProgress[id]);
@@ -225,7 +185,7 @@ function moveBackTask(e){
   getCardToDoEl(cardContentToDo);
   countTotal();
 }
-function moveOnTaskIn(e){
+export function moveOnTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
   done.push(inProgress[id]);
@@ -237,7 +197,7 @@ function moveOnTaskIn(e){
   countTotal();
 }
 
-function moveBackTaskIn(e){
+export function moveBackTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
   inProgress.push(done[id]);
