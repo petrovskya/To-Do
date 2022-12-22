@@ -344,4 +344,3 @@ deleteAllBtn.forEach((item) => {
     }
   });
 });
-
