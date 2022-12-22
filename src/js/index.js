@@ -1,9 +1,9 @@
 import {getDate} from "./modules/getDate.js";
 import {clearPopUp} from "./modules/clearPopUp.js";
 
-const toDo = [];
-const inProgress = [];
-const done = [];
+let toDo = [];
+let inProgress = [];
+let done = [];
 const cardContentToDo = document.querySelector('.card-content__to-do');
 const cardContentIn = document.querySelector('.card-content__in');
 const cardContentDone = document.querySelector('.card-content__done');
@@ -11,7 +11,9 @@ export {toDo, inProgress, done, cardContentToDo, cardContentIn, cardContentDone}
 import {outToDo, outInProgress, outDone} from "./modules/out.js";
 import { deleteTasks } from "./modules/deleteTasks.js";
 import { getCardToDoEl, getCardInPrEl, getCardDoneEl } from "./modules/getCardsElements.js";
-
+import { renderToDo } from "./modules/renderToDo.js";
+import { renderInProgress } from "./modules/renderInProgress.js";
+import { renderDone } from "./modules/renderDone.js";
 let currentDate = document.querySelector('.date');
 currentDate.textContent = getDate();
 
@@ -72,38 +74,67 @@ function isValid(elem) {
   }
 }
 
-// const setData = () => {
-//   let strToDo = JSON.stringify(toDo);
-//   let strInP = JSON.stringify(inProgress);
-//   let strDone = JSON.stringify(done);
-//   localStorage.setItem('toDo', strToDo);
-//   localStorage.setItem('inProgress',strInP);
-//   localStorage.setItem('done',strDone);
-// } 
-// const getData = () => {
-//   let from = localStorage.getItem('toDo');
-//   let data = JSON.parse(from);
-//   cardContentToDo.innerHTML = "";
-//   if (data) {
-//     sortItem(data);
-//     countTotal();
+const setData = () => {
+  let strToDo = JSON.stringify(toDo);
+  let strInP = JSON.stringify(inProgress);
+  let strDone = JSON.stringify(done);
+  localStorage.setItem('toDo', strToDo);
+  localStorage.setItem('inProgress',strInP);
+  localStorage.setItem('done',strDone);
+} 
+const getData = () => {
+  let fromToDo = localStorage.getItem('toDo');
+  let fromInPr = localStorage.getItem('inProgress');
+  let fromDone = localStorage.getItem('done');
+  let dataToDo = JSON.parse(fromToDo);
+  let dataInPr = JSON.parse(fromInPr);
+  let dataDone = JSON.parse(fromDone);
+  cardContentToDo.innerHTML = "";
+  if (dataToDo) {
+    // dataToDo.forEach((task, idx) => {
+    //   cardContentToDo.innerHTML += renderToDo(task, idx);
+    // });
+    toDo = dataToDo;
+    cardContentToDo.innerHTML = '';
+    dataToDo.forEach((task, idx) => cardContentToDo.innerHTML += renderToDo(task, idx));
+    getCardToDoEl(cardContentToDo);
+    countTotal();
 
-//   } else {
-//     cardContentToDo.innerHTML = "";
-//   }
-// }
-// const sortItem = (data) => {
-//   data.forEach((task, idx) => {
-//     cardContentToDo.innerHTML += renderToDo(task, idx);
-//   });
-// };
-// const removeUser = (array) => {
-//   localStorage.removeItem(array);
-//   setData(array);
-//   getData();
-// };
+  } else {
+    cardContentToDo.innerHTML = "";
+  }
+  if (dataInPr) {
+    // dataInPr.forEach((task, idx) => {
+    //   cardContentIn.innerHTML += renderInProgress(task, idx);
+    // });
+    inProgress = dataInPr;
+    cardContentIn.innerHTML = '';
+    dataInPr.forEach((task, idx) => cardContentIn.innerHTML += renderInProgress(task, idx));
+    getCardInPrEl(cardContentIn);
+    countTotal();
 
-// getData();
+  } else {
+    cardContentIn.innerHTML = "";
+  }
+  if (dataDone) {
+    // dataDone.forEach((task, idx) => {
+    //   cardContentDone.innerHTML += renderDone(task, idx);
+    // });
+    done = dataDone;
+    cardContentDone.innerHTML = '';
+    dataDone.forEach((task, idx) => cardContentDone.innerHTML += renderDone(task, idx));
+    getCardDoneEl(cardContentDone);
+    countTotal();
+
+  } else {
+    cardContentDone.innerHTML = "";
+  }
+}
+
+
+getData();
+countTotal();
+
 
 
 // let moveOnBtns = cardContentToDo.querySelectorAll('.task-btn-move-on'); 
@@ -129,12 +160,12 @@ const createTask = function() {
     let newTask = new Task(newTaskTitle.value, newTaskDesc.value, newTaskAuthor.value, taskDate);
     toDo.push(newTask);
     
-    // setData(toDo);
-    // getData();
+    setData();
+    getData();
     
-    outToDo();
+    // outToDo();
     clearPopUp([newTaskAuthor, newTaskDesc, newTaskTitle]);
-    getCardToDoEl(cardContentToDo);
+    // getCardToDoEl(cardContentToDo);
   }
 }
 
@@ -143,7 +174,9 @@ export function deleteTaskToDo(e){
   toDo.splice(thisTask, 1);
   // removeUser(toDo);
   thisTask.remove();
-  getCardToDoEl(cardContentToDo);
+  setData(toDo);
+  getData();
+  // getCardToDoEl(cardContentToDo);
   countTotal();
 }
 export function moveOnTaskToDo(e){
@@ -153,16 +186,20 @@ export function moveOnTaskToDo(e){
   toDo.splice(id, 1);
   // removeUser(toDo);
   thisTask.remove();
-  outInProgress();
-  getCardToDoEl(cardContentToDo);
-  getCardInPrEl(cardContentIn);
+  setData();
+  getData();
+  // outInProgress();
+  // getCardToDoEl(cardContentToDo);
+  // getCardInPrEl(cardContentIn);
 }
 
 export function deleteTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   inProgress.splice(thisTask, 1);
   thisTask.remove();
-  getCardInPrEl(cardContentIn);
+  // getCardInPrEl(cardContentIn);
+  setData();
+  getData();
   countTotal();
   
 }
@@ -170,7 +207,9 @@ export function deleteTaskDone(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   done.splice(thisTask, 1);
   thisTask.remove();
-  getCardDoneEl(cardContentDone);
+  // getCardDoneEl(cardContentDone);
+  setData();
+  getData();
   countTotal();
 }
 
@@ -180,9 +219,11 @@ export function moveBackTask(e){
   toDo.push(inProgress[id]);
   inProgress.splice(id, 1);
   thisTask.remove();
-  getCardInPrEl(cardContentIn);
-  outToDo();
-  getCardToDoEl(cardContentToDo);
+  // getCardInPrEl(cardContentIn);
+  // outToDo();
+  // getCardToDoEl(cardContentToDo);
+  setData();
+  getData();
   countTotal();
 }
 export function moveOnTaskIn(e){
@@ -191,9 +232,11 @@ export function moveOnTaskIn(e){
   done.push(inProgress[id]);
   inProgress.splice(id, 1);
   thisTask.remove();
-  getCardInPrEl(cardContentIn);
-  outDone();
-  getCardDoneEl(cardContentDone);
+  // getCardInPrEl(cardContentIn);
+  // outDone();
+  // getCardDoneEl(cardContentDone);
+  setData();
+  getData();
   countTotal();
 }
 
@@ -203,9 +246,11 @@ export function moveBackTaskIn(e){
   inProgress.push(done[id]);
   done.splice(id, 1);
   thisTask.remove();
-  getCardDoneEl(cardContentDone);
-  outInProgress();
-  getCardInPrEl(cardContentIn);
+  // getCardDoneEl(cardContentDone);
+  // outInProgress();
+  // getCardInPrEl(cardContentIn);
+  setData();
+  getData();
   countTotal();
 }
 taskBtnAdd.addEventListener('click', () => newTaskWrap.classList.add('active'));
