@@ -20,13 +20,14 @@
   },
   "homepage": "https://github.com/petrovskya/To-Do#readme",
   "dependencies": {
-    
+   
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
     "concat": "^1.0.3",
     "parcel": "^2.8.0",
+    "rimraf": "^3.0.2",
     "sass": "^1.56.1",
-    "rimraf": "^3.0.2"
+    "gh-pages": "^4.0.0"
   }
 }
