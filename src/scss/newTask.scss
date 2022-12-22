@@ -116,7 +116,7 @@ input {
   display: flex;
   justify-content: right;
 }
-.task-btn-cancel, .task-btn-new {
+.task-btn-clear, .task-btn-new {
   margin: 0 5px;
   border: none;
   border-radius: 20px;
@@ -129,7 +129,7 @@ input {
   background-color: rgb(65, 112, 184);
 
 }
-.task-btn-cancel {
+.task-btn-clear {
   background-color: rgb(219, 75, 53);
 
 }
