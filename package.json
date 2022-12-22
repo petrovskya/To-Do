@@ -5,9 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build",
-    "predeploy": "rimraf dist && parcel build --public-url https://github.com/petrovskya/To-Do",
-    "deploy": "gh-pages -d dist"
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",
