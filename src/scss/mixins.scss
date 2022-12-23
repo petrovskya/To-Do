@@ -1,0 +1,28 @@
+@mixin small {
+  font-size: $_16px;
+  font-weight: 400;
+}
+@mixin sm {
+  font-size: $_20px;
+  font-weight: 400;
+}
+@mixin normal {
+  font-size: $_24px;
+  font-weight: 500;
+}
+@mixin medium {
+  font-size: $_30px;
+  font-weight: 500;
+}
+@mixin bold {
+  font-size: $_36px;
+  font-weight: 500;
+}
+@mixin ultra {
+  font-size: $_42px;
+  font-weight: 600;
+}
+@mixin logo {
+  font-size: $_48px;
+  font-weight: 700;
+}

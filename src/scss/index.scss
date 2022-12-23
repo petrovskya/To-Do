@@ -1,8 +1,11 @@
+@import '../scss/variables.scss';
+@import '../scss/mixins.scss';
 @import '../scss/cdn.scss';
 @import '../scss/header.scss';
 @import '../scss/main.scss';
 @import '../scss/task.scss';
 @import '../scss/newTask.scss';
+
 
 * {
   margin: 0;
@@ -23,5 +26,30 @@ button {
   &:active {
     transform: scale(0.97);
     transition: 0.2s;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 984px;
+  }
+}
+@media(max-width: 992px) {
+  .container {
+    max-width: 900px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 660px;
+  }
+}
+@media(max-width: 480px) {
+  .container {
+    max-width: 400px;
+  }
+}
+@media(max-width: 320px){
+  .container {
+    max-width: 280px;
   }
 }

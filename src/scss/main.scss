@@ -27,16 +27,14 @@ main {
 }
 .card-title {
   color: rgb(219, 75, 53);
-  font-size: 32px;
-  font-weight: 500;
+  @include medium;
   margin-bottom: 5px;
 }
 .card-score {
   display: flex;
   justify-content: space-between;
   color: rgb(0, 28, 61);
-  font-size: 20px;
-  font-weight: 300;
+  @include normal;
   padding: 0 5px;
   p {
     margin: 0 15px;
@@ -52,7 +50,7 @@ main {
 }
 .fa-plus {
  font-size: 30px;
- color: rgb(65, 112, 184);
+ color: rgb(219, 75, 53);
  
 }
 .fa-trash-can {
@@ -97,4 +95,71 @@ main {
     display: none;
   }
 }
-  
+
+@media (max-width: 1024px) {
+  .card-title {
+    @include normal;
+  }
+  .card-score{
+    @include normal;
+  }
+}
+@media(max-width: 992px) {
+  .card-title {
+    @include sm;
+    font-weight: 600;
+  }
+  .card-score{
+    @include sm;
+  }
+  .fa-plus{
+    font-size: 24px;
+  }
+  .fa-trash-can{
+    font-size: 20px;
+  }
+  .card-title-name, .task-btn-add, .task-btn-delete-all {
+    margin: 0 10px;
+  }
+}
+@media (max-width: 768px) {
+  .card-title {
+    @include small;
+    font-weight: 600;
+  }
+  .card-score{
+    @include small;
+  }
+  .card {
+    padding: 15px 5px;
+
+  }
+}
+@media(max-width: 480px) {
+  .card-title {
+
+  }
+  .card-score{
+
+  }
+  .fa-plus{
+
+  }
+  .fa-trash-can{
+    
+  }
+}
+@media(max-width: 320px){
+  .card-title {
+
+  }
+  .card-score{
+
+  }
+  .fa-plus{
+
+  }
+  .fa-trash-can{
+    
+  }
+}
