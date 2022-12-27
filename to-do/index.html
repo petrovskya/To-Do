@@ -1,1 +1,109 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="index.2ba596aa.css"><title>To Do</title></head><body> <header> <div class="container"> <div class="header-wrap"> <p class="logo">ToDo</p> <p class="header-quote">what can I do today?</p> <p class="date"></p> </div> </div> </header> <main> <div class="container"> <div class="main-wrap"> <div class="card" data-status="toDo"> <div class="card-header"> <div class="card-title"> <p class="card-title-name">Make To Do</p> <button class="task-btn-add"> <i class="fa-plus fa-solid"></i> </button> <button class="task-btn-delete-all" data-status="toDo"> <i class="fa-solid fa-trash-can"></i> </button> </div> <div class="card-score"> <p>Total:</p> <p class="score" data-status="toDo">0</p> </div> </div> <div class="card-content__to-do" data-status="toDo"></div> </div> <div class="card" data-status="inProgress"> <div class="card-header"> <div class="card-title"> <p class="card-title-name">In progress</p> <button class="task-btn-delete-all" data-status="inProgress"> <i class="fa-solid fa-trash-can"></i> </button> </div> <div class="card-score"> <p>Total:</p> <p class="score" data-status="inProgress">0</p> </div> </div> <div class="card-content__in" data-status="inProgress"></div> </div> <div class="card" data-status="done"> <div class="card-header"> <div class="card-title"> <p class="card-title-name">Done</p> <button class="task-btn-delete-all" data-status="done"> <i class="fa-solid fa-trash-can"></i> </button> </div> <div class="card-score"> <p>Total:</p> <p class="score" data-status="done">0</p> </div> </div> <div class="card-content__done" data-status="done"></div> </div> </div> </div> </main> <section class="pop-up"> <div class="container"> <div class="new-task-wrap"> <div class="new-task-card"> <div class="new-task-card-header"> <p class="new-tasc-card-desc">Fill in all required fields</p> <button class="card-close-btn"> <i class="fa-circle-xmark fa-solid"></i> </button> </div> <div class="new-task-card-content"> <div class="new-task-item"> <p class="item-name">Title</p> <input class="new-task-title valid" id="title" type="text" placeholder="Enter title for your note"> </div> <div class="new-task-item"> <p class="item-name">Description</p> <textarea class="new-task-desc valid" id="desc" placeholder="Enter description for your note" cols="30" rows="10"></textarea> </div> <div class="new-task-item"> <p class="item-name">Author</p> <input class="new-task-author valid" id="author" type="text" placeholder="Enter author's name"> </div> </div> <div class="new-task-card-footer"> <button class="task-btn-new">Create</button> <button class="task-btn-clear">Clear</button> </div> </div> </div> </div> </section> <script src="index.d944a872.js" type="module"></script> </body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/index.da533f7e.css">
+  <title>To Do</title>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-wrap">
+        <p class="logo">ToDo</p>
+        <p class="header-quote">what can I do today?</p>
+        <p class="date"></p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="main-wrap">
+        <div class="card" data-status="toDo">
+          <div class="card-header">
+            <div class="card-title">
+              <p class="card-title-name">Make To Do</p>
+              <button class="task-btn-add">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+              <button class="task-btn-delete-all" data-status="toDo">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+            <div class="card-score">
+              <p>Total:</p>
+              <p class="score" data-status="toDo">0</p>
+            </div>
+          </div>
+          <div class="card-content__to-do" data-status="toDo"></div>
+        </div>  
+        <div class="card" data-status="inProgress">
+          <div class="card-header">
+            <div class="card-title">
+              <p class="card-title-name">In progress</p>
+              <button class="task-btn-delete-all" data-status="inProgress">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+            <div class="card-score">
+              <p>Total:</p>
+              <p class="score" data-status="inProgress">0</p>
+            </div>
+          </div>
+          <div class="card-content__in" data-status="inProgress"></div>
+        </div>
+        <div class="card" data-status="done">
+          <div class="card-header">
+            <div class="card-title">
+              <p class="card-title-name">Done</p>
+              <button class="task-btn-delete-all" data-status="done">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+            <div class="card-score">
+              <p>Total:</p>
+              <p class="score" data-status="done">0</p>
+            </div>
+          </div>
+          <div class="card-content__done" data-status="done"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="pop-up">
+    <div class="container">
+      <div class="new-task-wrap">
+        <div class="new-task-card">
+          <div class="new-task-card-header">
+            <p class="new-tasc-card-desc">Fill in all required fields</p>
+            <button class="card-close-btn">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+          </div>
+          <div class="new-task-card-content">
+            <div class="new-task-item">
+              <p class="item-name">Title</p>
+              <input class="new-task-title valid" id="title" type="text" placeholder="Enter title for your note">
+            </div>
+            <div class="new-task-item">
+              <p class="item-name">Description</p>
+              <textarea class="new-task-desc valid" id="desc" placeholder="Enter description for your note" cols="30" rows="10"></textarea>
+            </div>
+            <div class="new-task-item">
+              <p class="item-name">Author</p>
+              <input class="new-task-author valid" id="author" type="text" placeholder="Enter author's name">
+            </div>
+          </div>
+          <div class="new-task-card-footer">
+            <button class="task-btn-new">Create</button>
+            <button class="task-btn-clear">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="/index.739bf03c.js" defer=""></script>
+</body>
+
+</html>
