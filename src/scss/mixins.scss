@@ -1,3 +1,11 @@
+@mixin mobileM{
+  font-size: $_12px;
+  font-weight: 400;
+}
+@mixin mobileS{
+  font-size: $_8px;
+  font-weight: 300;
+}
 @mixin small {
   font-size: $_16px;
   font-weight: 400;

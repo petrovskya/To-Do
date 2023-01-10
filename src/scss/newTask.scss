@@ -157,18 +157,20 @@ input {
 }
 @media (max-width: 768px) {
   .new-task-card{
-    width: 95%;
-    max-height: 95%;
-    height: 95%;
+    width: 90%;
+    max-height: 70%;
     padding: 15px 15px;
-    // overflow-y: scroll;
-   
   }
   .new-task-card-header {
     margin-bottom: 5px;
   }
   .new-tasc-card-desc {
     @include bold;
+  }
+  .new-task-card-content {
+    margin: 0 auto 10px; 
+    width: 95%;
+    
   }
   input{
     @include sm;
@@ -195,7 +197,34 @@ input {
   }
 }
 @media(max-width: 480px) {
-  
+  .new-task-card{
+    width: 95%;
+    max-height: 70%;
+    padding: 15px 15px;
+  }
+  .new-task-card-header {
+    margin-bottom: 5px;
+  }
+  .new-tasc-card-desc {
+    @include normal;
+    margin-top: 5px;
+  }
+  input{
+    @include small;
+    padding: 2px 5px;
+  }
+  .new-task-desc{
+   @include small;
+   padding: 2px 5px;
+   height: 60px;
+   
+  }
+  .item-name {
+    @include sm;
+  }
+  .new-task-item {
+    margin-bottom: 10px;
+  }
 }
 @media(max-width: 320px){
   

@@ -54,4 +54,7 @@ header {
   .logo {
     @include normal;
   }
+  .header-quote {
+    display: none;
+  }
 }

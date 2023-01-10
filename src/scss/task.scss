@@ -40,13 +40,13 @@
   margin-bottom: 5px;
 }
 .task-desc {
-  color: rgba(121, 125, 126);
+  color:  rgb(0, 28, 61);
   @include normal;
   margin-bottom: 5px;
 }
 .task-author {
  @include sm;
-  color: rgb(0, 28, 61);
+  color: rgba(121, 125, 126);
   text-align: left;
   margin-bottom: 5px;
 }
@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: row;
   justify-content: right;
+  position: relative;
 }
 .task-btn-move-on, .task-btn-delete, .task-btn-move-back  {
   display: block;
@@ -62,6 +63,60 @@
  margin: 0 5px;
 }
 
+// .task-btn-delete {
+//   &:hover::before{
+//     padding: 5px 5px;
+//     display: block;
+//     content: "Delete task";
+//     position: absolute;
+//     top: -15px;
+//     right: -10px;
+//     font-size: 8px;
+//     background-color: rgba(121, 125, 126);
+//     border-radius: 10px;
+//     transition: 0.2s;
+//     color: aliceblue; 
+//   }
+//   &:active::before{
+//     display: none;
+//   }
+// }
+// .task-btn-move-on {
+//   &:hover::before{
+//     padding: 5px 5px;
+//     display: block;
+//     content: "Move on";
+//     position: absolute;
+//     top: -15px;
+//     left: -10px;
+//     font-size: 8px;
+//     background-color: rgba(121, 125, 126);
+//     border-radius: 10px;
+//     transition: 0.2s;
+//     color: aliceblue; 
+//   }
+//   &:active::before{
+//     display: none;
+//   }
+// }
+// .task-btn-move-back {
+//   &:hover::before{
+//     padding: 5px 5px;
+//     display: block;
+//     content: "Move back";
+//     position: absolute;
+//     top: -15px;
+//     left: -10px;
+//     font-size: 8px;
+//     background-color: rgba(121, 125, 126);
+//     border-radius: 10px;
+//     transition: 0.2s;
+//     color: aliceblue; 
+//   }
+//   &:active::before{
+//     display: none;
+//   }
+// }
 .fa-circle-right, .fa-circle-left {
   font-size: 30px;
   color: rgb(219, 75, 53);
@@ -88,30 +143,83 @@
 @media (max-width: 768px) {
   .task {
     max-width: 95%;
+    padding: 10px 10px;
   }
   .task-status {
-    @include small;
+    @include mobileM;
   }
   .task-date {
-
+    @include mobileM;
   }
   .task-title{
-
+    @include sm;
   }
   .task-desc{
-
+    @include small;
   }
   .task-author {
-
+    @include mobileM;
+  }
+  .task-btn-move-on, .task-btn-delete, .task-btn-move-back {
+    margin: 0 2px;
+  }
+  .fa-circle-right, .fa-circle-left, .fa-trash-can {
+    font-size: 20px;
+  }
+  .header {
+    font-size: 20px;
   }
 }
 @media(max-width: 480px) {
   .container {
-    max-width: 400px;
+    max-width: 420px;
   }
+  .task {
+    max-width: 90%;
+    padding: 15px 15px;
+  }
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  .task-status {
+    @include mobileM;
+    background-color: rgba(219, 75, 53, 0.1); 
+  }
+  .task-date {
+    @include small;
+  }
+  .task-title{
+    @include sm;
+  }
+  .task-desc{
+    @include small;
+  }
+  .task-author {
+    @include small;
+    margin-bottom: 20px;
+  }
+  .task-options {
+    display: flex;
+    justify-content: center;
+  }
+  .task-btn-move-on, .task-btn-delete, .task-btn-move-back {
+    margin: 0 5px;
+  }
+  .fa-circle-right, .fa-circle-left, .fa-trash-can {
+    font-size: 24px;
+  }
+  .header {
+    font-size: 20px;
+  }
+  
 }
 @media(max-width: 320px){
   .container {
     max-width: 280px;
+  }
+  .task {
+    max-width: 95%;
   }
 }
