@@ -70,7 +70,10 @@ export function countTotal(){
 // }
 function isValid(elem) {
   if(elem.value){
+    elem.style.borderColor = 'rgb(0, 28, 61)';
     return true;
+  } else {
+    elem.style.borderColor = 'red';
   }
 }
 
@@ -155,7 +158,7 @@ let Task = function(title, desc, author, date) {
 }
 
 const createTask = function() {
-  if(isValid(newTaskTitle) && isValid(newTaskAuthor)){
+  if(isValid(newTaskTitle)){
     let taskDate = getDate();
     let newTask = new Task(newTaskTitle.value, newTaskDesc.value, newTaskAuthor.value, taskDate);
     toDo.push(newTask);
