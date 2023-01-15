@@ -1,3 +1,4 @@
+console.log('123');
 import {getDate} from "./modules/getDate.js";
 import {clearPopUp} from "./modules/clearPopUp.js";
 
@@ -11,6 +12,7 @@ export {toDo, inProgress, done, cardContentToDo, cardContentIn, cardContentDone}
 import {outToDo, outInProgress, outDone} from "./modules/out.js";
 import { deleteTasks } from "./modules/deleteTasks.js";
 import { getCardToDoEl, getCardInPrEl, getCardDoneEl } from "./modules/getCardsElements.js";
+
 import { renderToDo } from "./modules/renderToDo.js";
 import { renderInProgress } from "./modules/renderInProgress.js";
 import { renderDone } from "./modules/renderDone.js";
@@ -174,46 +176,38 @@ const createTask = function() {
 
 export function deleteTaskToDo(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
-  toDo.splice(thisTask, 1);
-  // removeUser(toDo);
-  thisTask.remove();
-  setData(toDo);
+  let id = thisTask.id;
+  toDo.splice(id, 1);
+  console.log(toDo);
+  setData();
   getData();
-  // getCardToDoEl(cardContentToDo);
-  countTotal();
 }
+
 export function moveOnTaskToDo(e){
+
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
   inProgress.push(toDo[id]);
   toDo.splice(id, 1);
-  // removeUser(toDo);
-  thisTask.remove();
+  console.log(id, toDo);
   setData();
   getData();
-  // outInProgress();
-  // getCardToDoEl(cardContentToDo);
-  // getCardInPrEl(cardContentIn);
 }
 
 export function deleteTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
-  inProgress.splice(thisTask, 1);
-  thisTask.remove();
-  // getCardInPrEl(cardContentIn);
+  let id = thisTask.id;
+  inProgress.splice(id, 1);
   setData();
   getData();
-  countTotal();
   
 }
 export function deleteTaskDone(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
-  done.splice(thisTask, 1);
-  thisTask.remove();
-  // getCardDoneEl(cardContentDone);
+  let id = thisTask.id;
+  done.splice(id, 1);
   setData();
   getData();
-  countTotal();
 }
 
 export function moveBackTask(e){
@@ -221,26 +215,16 @@ export function moveBackTask(e){
   let id = thisTask.id;
   toDo.push(inProgress[id]);
   inProgress.splice(id, 1);
-  thisTask.remove();
-  // getCardInPrEl(cardContentIn);
-  // outToDo();
-  // getCardToDoEl(cardContentToDo);
   setData();
   getData();
-  countTotal();
 }
 export function moveOnTaskIn(e){
   let thisTask = e.currentTarget.closest('div[data-status]');
   let id = thisTask.id;
   done.push(inProgress[id]);
   inProgress.splice(id, 1);
-  thisTask.remove();
-  // getCardInPrEl(cardContentIn);
-  // outDone();
-  // getCardDoneEl(cardContentDone);
   setData();
   getData();
-  countTotal();
 }
 
 export function moveBackTaskIn(e){
@@ -248,13 +232,8 @@ export function moveBackTaskIn(e){
   let id = thisTask.id;
   inProgress.push(done[id]);
   done.splice(id, 1);
-  thisTask.remove();
-  // getCardDoneEl(cardContentDone);
-  // outInProgress();
-  // getCardInPrEl(cardContentIn);
   setData();
   getData();
-  countTotal();
 }
 taskBtnAdd.addEventListener('click', () => newTaskWrap.classList.add('active'));
 
